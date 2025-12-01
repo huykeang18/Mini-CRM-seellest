@@ -163,9 +163,9 @@ body {
 
 /* Pagination hover color */
 .pagination .page-link:hover {
-  background-color: #009d63;
-  border-color: #009d63;
-  color: white;
+  background-color: #c1efde;
+  border-color: #c1efde;
+  color: black;
 }
 
 /* Pagination default text color */
@@ -181,7 +181,7 @@ body {
 
 /* Individual Product Card Styling */
 .product-card {
-  background-color: #ffffff;
+  background-color: #f0f8f3;
   border-radius: 10px;
   padding: 20px;
   width: 220px;
