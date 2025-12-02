@@ -181,6 +181,7 @@ body {
 
 /* Individual Product Card Styling */
 .product-card {
+  border: #ffff;
   background-color: #f0f8f3;
   border-radius: 10px;
   padding: 20px;
@@ -188,6 +189,7 @@ body {
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .product-page {
@@ -235,4 +237,36 @@ body {
   font-size: 16px;
   color: #696969;
   margin-bottom: 10px;
+}
+/* Modal Styling */
+.modal-content {
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.modal-body img {
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+}
+
+.modal-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.btn-close {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 500px) {
+  .product-card {
+    width: 100%;
+  }
 }

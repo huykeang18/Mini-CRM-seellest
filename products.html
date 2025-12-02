@@ -38,11 +38,6 @@
           <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
           <h2 class="fs-2 m-0">Products</h2>
         </div>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
       </nav>
 
       <div class="d-flex justify-content-between align-items-center mb-4">
@@ -55,9 +50,63 @@
         <div class="d-flex justify-content-end align-items-center gap-2 mb-3">
 
           <!-- Add New Button -->
-          <button class="btn add-new-btn">
+          <button class="btn add-new-btn" data-bs-toggle="modal" data-bs-target="#addNewProductModal">
             <i class="fas fa-plus me-1"></i> Add New
           </button>
+
+          <!-- Add New Product Modal -->
+          <div class="modal fade" id="addNewProductModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content rounded-4 border-0 shadow">
+
+                <!-- Header -->
+                <div class="modal-header border-0">
+                  <h5 class="modal-title fs-4 fw-bold">Add New Product</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body px-4">
+                  <form id="addProductForm" class="row g-3">
+
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold">Product Name</label>
+                      <input type="text" class="form-control form-control-lg" placeholder="Product name" required>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="form-label fw-semibold">Price (USD)</label>
+                      <input type="number" class="form-control form-control-lg" placeholder="0.00" required>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="form-label fw-semibold">Stock</label>
+                      <input type="number" class="form-control form-control-lg" placeholder="0" required>
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label fw-semibold">Product Image</label>
+                      <input type="file" class="form-control form-control-lg" accept="image/*" required>
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label fw-semibold">Description</label>
+                      <textarea class="form-control" rows="4" placeholder="Write product description..."
+                        required></textarea>
+                    </div>
+
+                  </form>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer border-0">
+                  <button class="btn btn-secondary px-4 rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                  <button class="btn btn-success px-4 rounded-pill">Save Product</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
           <!-- 3 Dot Dropdown -->
           <div class="dropdown">
@@ -76,145 +125,430 @@
       </div>
 
       <!-- table of products -->
-
       <div class="product-page">
 
-        <div class="product-card">
+        <!-- Product 1 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p1">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="poloshirt.jpg">
-                <img src="assets/images/poloshirt.png" alt="image" width="150px" height="150px"></a>
-            </div>
+            <img src="assets/images/classic_cotton.png" alt="Classic T-Shirt">
           </div>
           <div class="product-name">Classic T-Shirt</div>
           <div class="product-price">US $14</div>
           <div class="product-stock">In Stock: 32</div>
+        </button>
+
+        <div class="modal fade" id="p1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Classic T-Shirt</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/classic_cotton.png" alt="Classic T-Shirt">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $14</span><br>
+                  <strong>Stock:</strong> 32 items<br><br>
+                  <p class="text-muted">The Classic T-Shirt is designed for everyday comfort with a clean, timeless
+                    style.
+                    Crafted from soft, breathable cotton, this shirt offers durability and a great fit,
+                    making it ideal for casual wear, work, or daily comfort.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="product-card">
+        <!-- Product 2 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p2">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="slimfitluxe.jpg">
-                <img src="assets/images/slimfitluxe.png" alt="image" width="150px" height="150px"></a>
-            </div>
+            <img src="assets/images/slimfitluxe.png" alt="Slim Fit Luxe">
           </div>
           <div class="product-name">Slim Fit Luxe</div>
           <div class="product-price">US $12</div>
           <div class="product-stock">In Stock: 16</div>
+        </button>
+
+        <div class="modal fade" id="p2">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Slim Fit Luxe</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/slimfitluxe.png" alt="Slim Fit Luxe">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $12</span><br>
+                  <strong>Stock:</strong> 16 items<br><br>
+                  <p class="text-muted">Slim Fit Luxe is designed to deliver a premium, tailored look with exceptional
+                    comfort.
+                    Made from high-quality blended fabric that provides stretch, breathability,
+                    and a perfectly sculpted silhouette. Ideal for office wear, casual outings, and stylish daily
+                    fashion.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="product-card">
+        <!-- Product 3 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p3">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="denimjean.jpg">
-                <img src="assets/images/denimjeans.png" alt="image" width="130px" height="150px"></a>
-            </div>
+            <img src="assets/images/denimjeans.png" alt="Denim Jeans">
           </div>
           <div class="product-name">Denim Jeans</div>
           <div class="product-price">US $15</div>
           <div class="product-stock">In Stock: 23</div>
+        </button>
+
+        <div class="modal fade" id="p3">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Denim Jeans</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/denimjeans.png" alt="Denim Jeans">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $15</span><br>
+                  <strong>Stock:</strong> 23 items<br><br>
+                  <p class="text-muted">Stylish and durable denim jeans designed for all-day comfort and a modern look.
+                    Made from high-quality denim fabric that feels soft yet strong, making it perfect
+                    for casual outings, work, or everyday wear.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="product-card">
+        <!-- Product 4 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p4">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="jacket.jpg">
-                <img src="assets/images/jacket.png" alt="image" width="50%"></a>
-            </div>
+            <img src="assets/images/jacket.png" alt="Jacket">
           </div>
           <div class="product-name">Jacket</div>
           <div class="product-price">US $34</div>
           <div class="product-stock">In Stock: 17</div>
+        </button>
+
+        <div class="modal fade" id="p4">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Jacket</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/jacket.png" alt="Jacket">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $34</span><br>
+                  <strong>Stock:</strong> 17 items<br><br>
+                  <p class="text-muted">A stylish and durable jacket designed for comfort, warmth, and everyday wear.
+                    Made with premium fabric that feels soft on the skin while providing excellent protection
+                    against light wind and cool weather. Perfect for casual outings, travel, or layering.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="product-card">
+        <!-- Product 5 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p5">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="dress.jpg">
-                <img src="assets/images/dress.png" alt="image" width="50%"></a>
-            </div>
+            <img src="assets/images/dress.png" alt="Regular Dress">
           </div>
           <div class="product-name">Regular Dress</div>
           <div class="product-price">US $19</div>
           <div class="product-stock">In Stock: 12</div>
-        </div>
+        </button>
 
-        <div class="product-card">
-          <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="urbanstripe.png">
-                <img src="assets/images/urbanstripe.png" alt="image" width="50%"></a>
+        <div class="modal fade" id="p5">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Regular Dress</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/dress.png" alt="Regular Dress">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $19</span><br>
+                  <strong>Stock:</strong> 12 items<br><br>
+                  <p class="text-muted">A comfortable and elegant regular dress designed for everyday wear.
+                    Lightweight fabric with a soft flow that provides a flattering silhouette.
+                    Perfect for casual outings, office days, or weekend activities.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
-          <div class="product-name">Urba Stripe</div>
-          <div class="product-price">US $28</div>
-          <div class="product-stock">In Stock: 24</div>
         </div>
 
-        <div class="product-card">
+        <!-- Product 6 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p6">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="boldcheck.png">
-                <img src="assets/images/boldcheck.png" alt="image" width="50%"></a>
-            </div>
+            <img src="assets/images/boldcheck.png" alt="Regular Dress">
           </div>
-          <div class="product-name">Bold Check</div>
-          <div class="product-price">US $25</div>
-          <div class="product-stock">In Stock: 12</div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="alphahalfsleeveladies.png">
-                <img src="assets/images/alphahalfsleeveladies.png" alt="image" width="50%"></a>
-            </div>
-          </div>
-          <div class="product-name">Alpha Half Sleeve Ladies</div>Long Sleeves
+          <div class="product-name">Bold Check Shirt</div>
           <div class="product-price">US $32</div>
-          <div class="product-stock">In Stock: 43</div>
+          <div class="product-stock">In Stock: 35</div>
+        </button>
+
+        <div class="modal fade" id="p6">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Bold Check Shirt</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/boldcheck.png" alt="Bold Check">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $32</span><br>
+                  <strong>Stock:</strong> 35 items<br><br>
+                  <p class="text-muted">A stylish bold check shirt perfect for casual and smart-casual occasions.
+                    Designed with high-quality cotton and a modern fit.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="product-card">
+        <!-- Product 7 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p7">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="longsleeves.png">
-                <img src="assets/images/longsleeves.png" alt="image" width="50%"></a>
+            <img src="assets/images/alphahalfsleeveladies.png" alt="Alpha Half Sleeve Ladies">
+          </div>
+          <div class="product-name">Alpha Half Sleeve Ladies</div>
+          <div class="product-price">US $45</div>
+          <div class="product-stock">In Stock: 27</div>
+        </button>
+
+        <div class="modal fade" id="p7">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Alpha Half Sleeve Ladies</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/alphahalfsleeveladies.png" alt="Alpha Half Sleeve Ladies">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $45</span><br>
+                  <strong>Stock:</strong> 27 items<br><br>
+                  <p class="text-muted"> A stylish half sleeve ladies shirt made for comfort and daily wear. Light and
+                    breathable material with a flattering fit for all-day comfort.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
             </div>
-          </div> 
-          <div class="product-name">Long Sleeves</div>
-          <div class="product-price">US $23</div>
-          <div class="product-stock">In Stock: 33</div>
+          </div>
         </div>
 
-        <div class="product-card">
+        <!-- Product 8 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p8">
           <div class="product-image-container">
-            <div class="gallery">
-              <a target="_blank" href="straightlongjeans.png">
-                <img src="assets/images/straightlongjeans.png" alt="image" width="50%"></a>
+            <img src="assets/images/longsleeves.png" alt="Long Sleeve Shirt">
+          </div>
+          <div class="product-name">Long Sleeve Shirt</div>
+          <div class="product-price">US $45</div>
+          <div class="product-stock">In Stock: 27</div>
+        </button>
+
+        <div class="modal fade" id="p8">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Long Sleeve Shirt</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/longsleeves.png" alt="Long Sleeve Shirt">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $45</span><br>
+                  <strong>Stock:</strong> 27 items<br><br>
+                  <p class="text-muted">A premium-quality long sleeve shirt designed for everyday wear.
+                    Soft, breathable fabric makes it ideal for both casual and office use.
+                    Provides all-day comfort with a clean and modern fit.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Product 9 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p9">
+          <div class="product-image-container">
+            <img src="assets/images/poloshirt.png" alt="Polo Shirt">
+          </div>
+          <div class="product-name">Polo Shirt</div>
+          <div class="product-price">US $28</div>
+          <div class="product-stock">In Stock: 40</div>
+        </button>
+
+        <div class="modal fade" id="p9">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Polo Shirt</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/poloshirt.png" alt="Polo Shirt">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $28</span><br>
+                  <strong>Stock:</strong> 40 items<br><br>
+                  <p class="text-muted">A classic, stylish Polo Shirt made with premium breathable fabric.
+                    Offers a perfect balance between comfort and smart-casual style.
+                    Suitable for work, outdoor activities, and daily wear.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 10 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p10">
+          <div class="product-image-container">
+            <img src="assets/images/straightlongjeans.png" alt="Straight Long Jeans">
           </div>
           <div class="product-name">Straight Long Jeans</div>
-          <div class="product-price">US $27</div>
-          <div class="product-stock">In Stock: 40</div>
+          <div class="product-price">US $35</div>
+          <div class="product-stock">In Stock: 38</div>
+        </button>
+
+        <div class="modal fade" id="p10">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Straight Long Jeans</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/straightlongjeans.png" alt="Straight Long Jeanst">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $35</span><br>
+                  <strong>Stock:</strong> 38 items<br><br>
+                  <p class="text-muted">Classic straight-cut long jeans designed for everyday comfort and durability.
+                    Made with premium denim that maintains its shape while offering a relaxed fit.
+                    Perfect for casual outings, work, or daily wear.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- Product 11 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p11">
+          <div class="product-image-container">
+            <img src="assets/images/midiskirt.png" alt="Midi Skirt">
+          </div>
+          <div class="product-name">Midi Skirt</div>
+          <div class="product-price">US $28</div>
+          <div class="product-stock">In Stock: 44</div>
+        </button>
+
+        <div class="modal fade" id="p11">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Midi Skirt</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/midiskirt.png" alt="Midi Skirt">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $28</span><br>
+                  <strong>Stock:</strong> 44 items<br><br>
+                  <p class="text-muted">Crafted from soft, breathable fabric that flows beautifully with every step,
+                    offering a flattering fit for all body types. Features a comfortable waistband and a classic A-line
+                    silhouette. Perfect for office wear, casual outings, or stylish weekend looks.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 12 -->
+        <button class="product-card" data-bs-toggle="modal" data-bs-target="#p12">
+          <div class="product-image-container">
+            <img src="assets/images/runningsneakers.png" alt="Running Sneakers">
+          </div>
+          <div class="product-name">Running Sneakers</div>
+          <div class="product-price">US $54</div>
+          <div class="product-stock">In Stock: 13</div>
+        </button>
+
+        <div class="modal fade" id="p12">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title">Running Sneakers</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img style="width: 200px;" src="assets/images/runningsneakers.png" alt="Running Sneakers">
+                <div class="mt-3 text-start">
+                  <strong>Price:</strong> <span class="text-success fw-bold">US $54</span><br>
+                  <strong>Stock:</strong> 13 items<br><br>
+                  <p class="text-muted">Lightweight and comfortable running sneakers engineered for high performance and
+                    all-day wear. Featuring breathable mesh fabric, cushioned insoles, and durable outsoles for
+                    excellent grip and shock absorption. Ideal for running, workouts, or casual streetwear. Offers a
+                    modern design with a snug fit that supports natural foot movement.</p>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- /#page-content-wrapper -->
       </div>
 
-    </div>
-  </div>
-  <!-- /#page-content-wrapper -->
-  </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+      <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    var el = document.getElementById("wrapper");
-    var toggleButton = document.getElementById("menu-toggle");
-
-    toggleButton.onclick = function () {
-      el.classList.toggle("toggled");
-    };
-  </script>
+        toggleButton.onclick = function () {
+          el.classList.toggle("toggled");
+        };
+      </script>
 </body>
 
 </html>

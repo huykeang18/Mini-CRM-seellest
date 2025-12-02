@@ -38,11 +38,6 @@
           <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
           <h2 class="fs-2 m-0">Orders</h2>
         </div>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
       </nav>
 
       <div class="d-flex justify-content-between align-items-center mb-4">
@@ -51,12 +46,73 @@
           <input class="form-control" type="search" placeholder="Search">
         </form>
 
-        <!-- Add New Button -->
-        <button class="btn btn-success px-4" style="background:#009d63; border:none;">
+        <!-- ADD NEW ORDER MODAL -->
+        <button class="btn btn-success px-4" style="background:#009d63; border:none;" data-bs-toggle="modal"
+          data-bs-target="#addNewModal">
           <i class="fas fa-plus me-1"></i> Add New
         </button>
-      </div>
 
+        <div class="modal fade" id="addNewModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-3">
+
+              <div class="modal-header">
+                <h5 class="modal-title">Add New</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+
+              <div class="modal-body">
+                <form>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Customer Name</label>
+                      <input type="text" class="form-control" placeholder="Enter customer name">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Order Date</label>
+                      <input type="date" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Product Name</label>
+                      <input type="text" class="form-control" placeholder="Enter product name">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label fw-bold">Items</label>
+                      <input type="number" class="form-control" placeholder="0">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label fw-bold">Total ($)</label>
+                      <input type="number" class="form-control" placeholder="0.00">
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Payment Status</label>
+                    <select class="form-control">
+                      <option value="">Select Status</option>
+                      <option>Pending</option>
+                      <option>Paid</option>
+                      <option>Failed</option>
+                    </select>
+                  </div>
+
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" style="background:#009d63; border:none;">Save</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
 
       <!-- table orders -->
       <table class="bg-white table table-hover table shadow-sm border">
