@@ -134,16 +134,6 @@ body {
   border-radius: 6px;
 }
 
-/* 3 Dot button */
-.three-dot-btn {
-  padding: 8px 10px;
-  border-radius: 6px;
-}
-
-.three-dot-btn:hover {
-  background: #f3f3f3;
-}
-
 /* Dropdown styling */
 .dropdown-menu {
   border-radius: 8px;
@@ -154,38 +144,13 @@ body {
   background-color: #f4f4f4;
 }
 
-/* Pagination active color */
-.pagination .page-item.active .page-link {
-  background-color: #009d63;
-  border-color: #009d63;
-  color: white;
-}
-
-/* Pagination hover color */
-.pagination .page-link:hover {
-  background-color: #c1efde;
-  border-color: #c1efde;
-  color: black;
-}
-
-/* Pagination default text color */
-.pagination .page-link {
-  color: #009d63;
-}
-
-/* page products */
-.product-image-container img {
-  width: 15rem;
-  height: 15rem;
-}
-
 /* Individual Product Card Styling */
 .product-card {
   border: #ffff;
   background-color: #f0f8f3;
   border-radius: 10px;
   padding: 20px;
-  width: 200px;
+  /* width: 200px; */
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease;
