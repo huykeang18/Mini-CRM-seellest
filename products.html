@@ -7,7 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- link bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <!-- link font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <!-- link css -->
   <link rel="stylesheet" href="assets/style.css" />
   <title>Products</title>
 </head>
@@ -25,8 +27,8 @@
         <a href="products.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
             class="fas fa-tags me-2"></i></i>
           Products</a>
-        <a href="orders.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-            class="fas fa-chart-line me-2"></i>Orders</a>
+        <a href="customers.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+            class="fas fa-users me-2"></i></i>Customers</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -40,600 +42,143 @@
         </div>
       </nav>
 
+      <!-- Search + Add button (grows to full width on mobile) -->
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <!-- Search -->
+        <!-- Search input -->
         <form class="form-inline" style="width: 35%;">
-          <input class="form-control" type="search" placeholder="Search">
+          <input class="form-control shadow-sm" id="searchInput" type="search" placeholder="Search"
+            aria-label="Search products">
         </form>
 
-        <!-- Add New, edit and delete Button -->
-        <div class="d-flex justify-content-end align-items-center gap-2 mb-3">
+        <!-- Add Product button -->
+        <button class="btn primary-bg text-white border-0 px-4 fw-semibold newProduct shadow-sm"
+          style="white-space: nowrap;" data-bs-toggle="modal" data-bs-target="#addNewModal">
+          <i class="fas fa-plus me-2"></i>Add Product
+        </button>
+      </div>
 
-          <!-- Add New Button -->
-          <button type="button" class="btn add-new-btn" data-bs-toggle="modal" data-bs-target="#addNewProductModal">
-            <i class="fas fa-plus me-1"></i> Add New
-          </button>
+      <section class="py-3">
+        <div class="row cards" id="productContainer">
+          <!-- Product cards will be display here via JS -->
+        </div>
+      </section>
 
-          <!-- Add New Product Modal -->
-          <div class="modal fade" id="addNewProductModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-              <div class="modal-content rounded-4 border-0 shadow">
+    </div>
+  </div>
 
-                <!-- Header -->
-                <div class="modal-header border-0">
-                  <h5 class="modal-title fs-4 fw-bold">Add New Product</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
+  <!-- Product Form Modal -->
+  <div class="modal fade" id="productForm">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
 
-                <div class="modal-body px-4">
-                  <form id="addProductForm" class="row g-3">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
 
-                    <div class="col-md-6">
-                      <label class="form-label fw-semibold">Product Name</label>
-                      <input type="text" class="form-control form-control-lg" placeholder="Product name" required>
-                    </div>
+        <div class="modal-body">
+          <form id="productFormElement">
 
-                    <div class="col-md-3">
-                      <label class="form-label fw-semibold">Price (USD)</label>
-                      <input type="number" class="form-control form-control-lg" placeholder="0.00" required>
-                    </div>
-
-                    <div class="col-md-3">
-                      <label class="form-label fw-semibold">Stock</label>
-                      <input type="number" class="form-control form-control-lg" placeholder="0" required>
-                    </div>
-
-                    <div class="col-12">
-                      <label class="form-label fw-semibold">Product Image</label>
-                      <input type="file" class="form-control form-control-lg" accept="image/*" required>
-                    </div>
-
-                    <div class="col-12">
-                      <label class="form-label fw-semibold">Description</label>
-                      <textarea class="form-control" rows="4" placeholder="Write product description..."
-                        required></textarea>
-                    </div>
-
-                  </form>
-
-                </div>
-
-                <!-- Footer -->
-                <div class="modal-footer border-0">
-                  <button class="btn btn-secondary px-4 rounded" data-bs-dismiss="modal">Cancel</button>
-                  <button class="btn btn-success px-4 rounded" data-bs-dismiss="modal">Save Product</button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- 3 Dot Dropdown -->
-          <div class="dropdown">
-            <button class="btn three-dot-btn" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-ellipsis-v"></i>
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editProductModal">
-                  <i class="fas fa-edit me-2"></i>Edit
-                </button>
-              </li>
-              <li>
-                <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                  <i class="fas fa-trash me-2"></i>Delete
-                </button>
-              </li>
-            </ul>
-
-            <!-- Edit Product Modal -->
-            <div class="modal fade" id="editProductModal" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content rounded-4 border-0 shadow">
-
-                  <div class="modal-header border-0">
-                    <h5 class="modal-title fs-4 fw-bold">Edit Product</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-
-                  <div class="modal-body px-4">
-                    <form id="editProductForm" class="row g-3">
-
-                      <div class="col-md-6">
-                        <label class="form-label fw-semibold">Product Name</label>
-                        <input type="text" class="form-control form-control-lg" placeholder="Product name" required>
-                      </div>
-
-                      <div class="col-md-3">
-                        <label class="form-label fw-semibold">Price (USD)</label>
-                        <input type="number" class="form-control form-control-lg" placeholder="0.00" required>
-                      </div>
-
-                      <div class="col-md-3">
-                        <label class="form-label fw-semibold">Stock</label>
-                        <input type="number" class="form-control form-control-lg" placeholder="0" required>
-                      </div>
-
-                      <div class="col-12">
-                        <label class="form-label fw-semibold">Product Image</label>
-                        <input type="file" class="form-control form-control-lg" accept="image/*">
-                      </div>
-
-                      <div class="col-12">
-                        <label class="form-label fw-semibold">Description</label>
-                        <textarea class="form-control" rows="4" placeholder="Write product description..."></textarea>
-                      </div>
-
-                    </form>
-                  </div>
-
-                  <div class="modal-footer border-0">
-                    <button class="btn btn-secondary px-4 rounded" data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-success px-4 rounded" data-bs-dismiss="modal">Save Changes</button>
-                  </div>
-
-                </div>
-              </div>
+            <div class="mb-3 text-center">
+              <img src="assets/images/Logo.png" alt="Product Image" id="productImgPreview" width="500" height="200"
+                class="mb-2">
+              <input type="file" id="productImgInput" class="form-control">
             </div>
 
-            <!-- Delete Confirmation Modal -->
-            <div class="modal fade" id="deleteConfirmModal" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content rounded-4 border-0 shadow">
-
-                  <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold text-danger">Delete Product</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-
-                  <div class="modal-body text-center px-4">
-                    <i class="fas fa-exclamation-triangle text-danger" style="font-size: 48px;"></i>
-                    <p class="mt-3 fs-5">
-                      Are you sure you want to delete this product?<br>
-                    </p>
-                  </div>
-
-                  <div class="modal-footer border-0">
-                    <button class="btn btn-secondary rounded px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-danger rounded px-4" data-bs-dismiss="modal">Delete</button>
-                  </div>
-
-                </div>
-              </div>
+            <div class="mb-3">
+              <label for="productName" class="form-label">Name:</label>
+              <input type="text" id="productName" class="form-control" required>
             </div>
 
-          </div>
+            <div class="mb-3">
+              <label for="productPrice" class="form-label">Price:</label>
+              <input type="number" id="productPrice" class="form-control" required>
+            </div>
 
+            <div class="mb-3">
+              <label for="productStock" class="form-label">Stock:</label>
+              <input type="number" id="productStock" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="productDescription" class="form-label">Description:</label>
+              <textarea type="text" rows="4" id="productDescription" class="form-control" required></textarea>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" form="productFormElement" class="btn primary-bg btn-success onclick"
+            id="submitProductBtn">Add
+            Product</button>
         </div>
 
       </div>
+    </div>
+  </div>
 
-      <!-- table of products -->
-      <div class="product-page">
+  <!-- Product Detail Modal -->
+  <div class="modal fade" id="productDetailModal">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content">
 
-        <!-- Product 1 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p1">
-          <div class="product-image-container">
-            <img src="assets/images/classic_cotton.png" alt="Classic T-Shirt">
-          </div>
-          <div class="product-name">Classic T-Shirt</div>
-          <div class="product-price">US $14</div>
-          <div class="product-stock">In Stock: 32</div>
-        </button>
-
-        <div class="modal fade" id="p1">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Classic T-Shirt</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/classic_cotton.png" alt="Classic T-Shirt">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $14</span><br>
-                  <strong>Stock:</strong> 32 items<br><br>
-                  <p class="text-muted">The Classic T-Shirt is designed for everyday comfort with a clean, timeless
-                    style.
-                    Crafted from soft, breathable cotton, this shirt offers durability and a great fit,
-                    making it ideal for casual wear, work, or daily comfort.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
+        <div class="modal-header ">
+          <h5 class="modal-title" id="detailTitle">Product Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
 
-        <!-- Product 2 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p2">
-          <div class="product-image-container">
-            <img src="assets/images/slimfitluxe.png" alt="Slim Fit Luxe">
-          </div>
-          <div class="product-name">Slim Fit Luxe</div>
-          <div class="product-price">US $12</div>
-          <div class="product-stock">In Stock: 16</div>
-        </button>
-
-        <div class="modal fade" id="p2">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Slim Fit Luxe</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/slimfitluxe.png" alt="Slim Fit Luxe">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $12</span><br>
-                  <strong>Stock:</strong> 16 items<br><br>
-                  <p class="text-muted">Slim Fit Luxe is designed to deliver a premium, tailored look with exceptional
-                    comfort.
-                    Made from high-quality blended fabric that provides stretch, breathability,
-                    and a perfectly sculpted silhouette. Ideal for office wear, casual outings, and stylish daily
-                    fashion.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
+        <div class="modal-body">
+          <img id="detailImg" src="" class="mb-3" style="object-fit:cover; width: 200px;">
+          <h4 class="modal-title" id="detailName"></h4>
+          <p class="fw-bold pt-2 primary-text" id="detailPrice"></p>
+          <p id="detailStock"></p>
+          <p class="text-muted" id="detailDescription"></p>
         </div>
 
-        <!-- Product 3 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p3">
-          <div class="product-image-container">
-            <img src="assets/images/denimjeans.png" alt="Denim Jeans">
-          </div>
-          <div class="product-name">Denim Jeans</div>
-          <div class="product-price">US $15</div>
-          <div class="product-stock">In Stock: 23</div>
-        </button>
-
-        <div class="modal fade" id="p3">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Denim Jeans</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/denimjeans.png" alt="Denim Jeans">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $15</span><br>
-                  <strong>Stock:</strong> 23 items<br><br>
-                  <p class="text-muted">Stylish and durable denim jeans designed for all-day comfort and a modern look.
-                    Made from high-quality denim fabric that feels soft yet strong, making it perfect
-                    for casual outings, work, or everyday wear.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
         </div>
 
-        <!-- Product 4 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p4">
-          <div class="product-image-container">
-            <img src="assets/images/jacket.png" alt="Jacket">
-          </div>
-          <div class="product-name">Jacket</div>
-          <div class="product-price">US $34</div>
-          <div class="product-stock">In Stock: 17</div>
-        </button>
-
-        <div class="modal fade" id="p4">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Jacket</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/jacket.png" alt="Jacket">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $34</span><br>
-                  <strong>Stock:</strong> 17 items<br><br>
-                  <p class="text-muted">A stylish and durable jacket designed for comfort, warmth, and everyday wear.
-                    Made with premium fabric that feels soft on the skin while providing excellent protection
-                    against light wind and cool weather. Perfect for casual outings, travel, or layering.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p5">
-          <div class="product-image-container">
-            <img src="assets/images/dress.png" alt="Regular Dress">
-          </div>
-          <div class="product-name">Regular Dress</div>
-          <div class="product-price">US $19</div>
-          <div class="product-stock">In Stock: 12</div>
-        </button>
-
-        <div class="modal fade" id="p5">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Regular Dress</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/dress.png" alt="Regular Dress">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $19</span><br>
-                  <strong>Stock:</strong> 12 items<br><br>
-                  <p class="text-muted">A comfortable and elegant regular dress designed for everyday wear.
-                    Lightweight fabric with a soft flow that provides a flattering silhouette.
-                    Perfect for casual outings, office days, or weekend activities.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 6 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p6">
-          <div class="product-image-container">
-            <img src="assets/images/boldcheck.png" alt="Regular Dress">
-          </div>
-          <div class="product-name">Bold Check Shirt</div>
-          <div class="product-price">US $32</div>
-          <div class="product-stock">In Stock: 35</div>
-        </button>
-
-        <div class="modal fade" id="p6">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Bold Check Shirt</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/boldcheck.png" alt="Bold Check">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $32</span><br>
-                  <strong>Stock:</strong> 35 items<br><br>
-                  <p class="text-muted">A stylish bold check shirt perfect for casual and smart-casual occasions.
-                    Designed with high-quality cotton and a modern fit.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 7 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p7">
-          <div class="product-image-container">
-            <img src="assets/images/alphahalfsleeveladies.png" alt="Alpha Half Sleeve Ladies">
-          </div>
-          <div class="product-name">Alpha Half Sleeve Ladies</div>
-          <div class="product-price">US $45</div>
-          <div class="product-stock">In Stock: 27</div>
-        </button>
-
-        <div class="modal fade" id="p7">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Alpha Half Sleeve Ladies</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/alphahalfsleeveladies.png" alt="Alpha Half Sleeve Ladies">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $45</span><br>
-                  <strong>Stock:</strong> 27 items<br><br>
-                  <p class="text-muted"> A stylish half sleeve ladies shirt made for comfort and daily wear. Light and
-                    breathable material with a flattering fit for all-day comfort.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 8 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p8">
-          <div class="product-image-container">
-            <img src="assets/images/longsleeves.png" alt="Long Sleeve Shirt">
-          </div>
-          <div class="product-name">Long Sleeve Shirt</div>
-          <div class="product-price">US $45</div>
-          <div class="product-stock">In Stock: 27</div>
-        </button>
-
-        <div class="modal fade" id="p8">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Long Sleeve Shirt</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/longsleeves.png" alt="Long Sleeve Shirt">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $45</span><br>
-                  <strong>Stock:</strong> 27 items<br><br>
-                  <p class="text-muted">A premium-quality long sleeve shirt designed for everyday wear.
-                    Soft, breathable fabric makes it ideal for both casual and office use.
-                    Provides all-day comfort with a clean and modern fit.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 9 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p9">
-          <div class="product-image-container">
-            <img src="assets/images/poloshirt.png" alt="Polo Shirt">
-          </div>
-          <div class="product-name">Polo Shirt</div>
-          <div class="product-price">US $28</div>
-          <div class="product-stock">In Stock: 40</div>
-        </button>
-
-        <div class="modal fade" id="p9">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Polo Shirt</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/poloshirt.png" alt="Polo Shirt">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $28</span><br>
-                  <strong>Stock:</strong> 40 items<br><br>
-                  <p class="text-muted">A classic, stylish Polo Shirt made with premium breathable fabric.
-                    Offers a perfect balance between comfort and smart-casual style.
-                    Suitable for work, outdoor activities, and daily wear.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 10 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p10">
-          <div class="product-image-container">
-            <img src="assets/images/straightlongjeans.png" alt="Straight Long Jeans">
-          </div>
-          <div class="product-name">Straight Long Jeans</div>
-          <div class="product-price">US $35</div>
-          <div class="product-stock">In Stock: 38</div>
-        </button>
-
-        <div class="modal fade" id="p10">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Straight Long Jeans</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/straightlongjeans.png" alt="Straight Long Jeanst">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $35</span><br>
-                  <strong>Stock:</strong> 38 items<br><br>
-                  <p class="text-muted">Classic straight-cut long jeans designed for everyday comfort and durability.
-                    Made with premium denim that maintains its shape while offering a relaxed fit.
-                    Perfect for casual outings, work, or daily wear.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 11 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p11">
-          <div class="product-image-container">
-            <img src="assets/images/midiskirt.png" alt="Midi Skirt">
-          </div>
-          <div class="product-name">Midi Skirt</div>
-          <div class="product-price">US $28</div>
-          <div class="product-stock">In Stock: 44</div>
-        </button>
-
-        <div class="modal fade" id="p11">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Midi Skirt</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/midiskirt.png" alt="Midi Skirt">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $28</span><br>
-                  <strong>Stock:</strong> 44 items<br><br>
-                  <p class="text-muted">Crafted from soft, breathable fabric that flows beautifully with every step,
-                    offering a flattering fit for all body types. Features a comfortable waistband and a classic A-line
-                    silhouette. Perfect for office wear, casual outings, or stylish weekend looks.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 12 -->
-        <button type="button" class="product-card" data-bs-toggle="modal" data-bs-target="#p12">
-          <div class="product-image-container">
-            <img src="assets/images/runningsneakers.png" alt="Running Sneakers">
-          </div>
-          <div class="product-name">Running Sneakers</div>
-          <div class="product-price">US $54</div>
-          <div class="product-stock">In Stock: 13</div>
-        </button>
-
-        <div class="modal fade" id="p12">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0">
-                <h5 class="modal-title">Running Sneakers</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img style="width: 200px;" src="assets/images/runningsneakers.png" alt="Running Sneakers">
-                <div class="mt-3 text-start">
-                  <strong>Price:</strong> <span class="text-success fw-bold">US $54</span><br>
-                  <strong>Stock:</strong> 13 items<br><br>
-                  <p class="text-muted">Lightweight and comfortable running sneakers engineered for high performance and
-                    all-day wear. Featuring breathable mesh fabric, cushioned insoles, and durable outsoles for
-                    excellent grip and shock absorption. Ideal for running, workouts, or casual streetwear. Offers a
-                    modern design with a snug fit that supports natural foot movement.</p>
-                </div>
-              </div>
-              <div class="modal-footer border-0">
-                <button class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- /#page-content-wrapper -->
       </div>
+    </div>
+  </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-      <script>
-        var el = document.getElementById("wrapper");
-        var toggleButton = document.getElementById("menu-toggle");
+  <!-- DELETE MODAL -->
+  <div class="modal fade" id="deleteModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3">
 
-        toggleButton.onclick = function () {
-          el.classList.toggle("toggled");
-        };
-      </script>
+        <div class="modal-header">
+          <h5 class="modal-title text-danger fw-bold">Delete Order</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body text-center">
+          <i class="fas fa-exclamation-triangle text-danger fs-1 mb-3"></i>
+          <p class="fs-5">Are you sure you want to delete this product?</p>
+        </div>
+
+        <div class="modal-footer d-flex justify-content-center">
+          <button class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger px-4" id="confirmDeleteBtn" data-bs-dismiss="modal">Delete</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/products.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let el = document.getElementById("wrapper");
+    let toggleButton = document.getElementById("menu-toggle");
+
+    toggleButton.onclick = function () {
+      el.classList.toggle("toggled");
+    };
+  </script>
 </body>
 
 </html>
