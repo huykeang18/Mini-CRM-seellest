@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.innerText = "Update Product";
     modalTitle.innerText = "Update Product";
     imgPreview.style.width  = "200px";
-    imgPreview.style.height = "210px";
+    // imgPreview.style.height = "210px";
 
     const bsModal = new bootstrap.Modal(addModal);
     bsModal.show();
