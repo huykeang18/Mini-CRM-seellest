@@ -174,16 +174,12 @@ body {
   background-color: #f0f8f3;
   border-radius: 8px;
   height: 180px;
+  width: 170px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-self: center;
   margin-bottom: 15px;
-}
-
-.product-image-container img {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 /* Product Info Styling */
