@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Open modal for new product
   newProductBtn.addEventListener("click", () => {
     form.reset();
-    imgPreview.src = "assets/images/Logo.png";
+    imgPreview.src = "image/Logo.png";
     imgPreview.style.width = "150px";
     submitBtn.innerText = "Add Product";
     modalTitle.innerText = "Add Product";
