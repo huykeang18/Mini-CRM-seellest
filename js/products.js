@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Open modal for new product
   newProductBtn.addEventListener("click", () => {
     form.reset();
-    imgPreview.src = "assets/images/Logo.png";
+    imgPreview.src = "image/Logo.png";
     imgPreview.style.width = "150px";
     submitBtn.innerText = "Add Product";
     modalTitle.innerText = "Add Product";
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.innerText = "Update Product";
     modalTitle.innerText = "Update Product";
     imgPreview.style.width  = "200px";
-    imgPreview.style.height = "210px";
+    // imgPreview.style.height = "210px";
 
     const bsModal = new bootstrap.Modal(addModal);
     bsModal.show();
